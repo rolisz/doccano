@@ -1,8 +1,8 @@
 <template>
   <confirm-form
     :items="selected"
-    :title="$t('dataset.deleteDocumentsTitle')"
-    :message="$t('dataset.deleteDocumentsMessage')"
+    title="Delete Label"
+    :message="$t('labels.deleteMessage')"
     item-key="text"
     @ok="$emit('remove')"
     @cancel="$emit('cancel')"

@@ -43,6 +43,47 @@ urlpatterns_project = [
         name='label_detail'
     ),
     path(
+        route='examples',
+        view=views.ExampleList.as_view(),
+        name='example_list'
+    ),
+    path(
+        route='examples/<int:example_id>',
+        view=views.ExampleDetail.as_view(),
+        name='example_detail'
+    ),
+    path(
+        route='relation_types',
+        view=views.RelationTypesList.as_view(),
+        name='relation_types_list'
+    ),
+    path(
+        route='relation_type-upload',
+        view=views.RelationTypesUploadAPI.as_view(),
+        name='relation_type-upload'
+    ),
+    path(
+        route='relation_types/<int:relation_type_id>',
+        view=views.RelationTypesDetail.as_view(),
+        name='relation_type_detail'
+    ),
+    path(
+        route='annotation_relations',
+        view=views.AnnotationRelationsList.as_view(),
+        name='relation_types_list'
+    ),
+    path(
+        route='annotation_relation-upload',
+        view=views.AnnotationRelationsUploadAPI.as_view(),
+        name='annotation_relation-upload'
+    ),
+    path(
+        route='annotation_relations/<int:annotation_relation_id>',
+        view=views.AnnotationRelationsDetail.as_view(),
+        name='annotation_relation_detail'
+    ),
+    # Todo: remove.
+    path(
         route='docs',
         view=views.DocumentList.as_view(),
         name='doc_list'
@@ -53,10 +94,11 @@ urlpatterns_project = [
         name='doc_detail'
     ),
     path(
-        route='docs/<int:doc_id>/approve-labels',
-        view=views.ApproveLabelsAPI.as_view(),
+        route='approval/<int:example_id>',
+        view=views.ApprovalAPI.as_view(),
         name='approve_labels'
     ),
+    # Todo: change.
     path(
         route='docs/<int:doc_id>/annotations',
         view=views.AnnotationList.as_view(),
@@ -78,7 +120,7 @@ urlpatterns_project = [
         name='tag_detail'
     ),
     path(
-        route='docs/<int:doc_id>/comments',
+        route='examples/<int:example_id>/comments',
         view=views.CommentListDoc.as_view(),
         name='comment_list_doc'
     ),
@@ -88,9 +130,14 @@ urlpatterns_project = [
         name='comment_list_project'
     ),
     path(
-        route='docs/<int:doc_id>/comments/<int:comment_id>',
+        route='examples/<int:example_id>/comments/<int:comment_id>',
         view=views.CommentDetail.as_view(),
         name='comment_detail'
+    ),
+    path(
+      route='examples/<int:example_id>/states',
+      view=views.ExampleStateList.as_view(),
+      name='example_state_list'
     ),
     path(
         route='roles',
@@ -128,9 +175,14 @@ urlpatterns_project = [
         name='auto_labeling_config_test'
     ),
     path(
-        route='docs/<int:doc_id>/auto-labeling',
+        route='examples/<int:example_id>/auto-labeling',
         view=views.AutoLabelingAnnotation.as_view(),
         name='auto_labeling_annotation'
+    ),
+    path(
+        route='auto-labeling-parameter-testing',
+        view=views.AutoLabelingConfigParameterTest.as_view(),
+        name='auto_labeling_parameter_testing'
     ),
     path(
         route='auto-labeling-template-testing',
@@ -176,11 +228,6 @@ urlpatterns = [
         route='roles',
         view=views.Roles.as_view(),
         name='roles'
-    ),
-    path(
-        route='auto-labeling-parameter-testing',
-        view=views.AutoLabelingConfigParameterTest.as_view(),
-        name='auto_labeling_parameter_testing'
     ),
     path(
         route='tasks/status/<task_id>',

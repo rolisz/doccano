@@ -14,13 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.contrib import admin
-from django.urls import path, include, re_path
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.contrib.auth.views import TemplateView
-from drf_yasg.views import get_schema_view
+from django.urls import include, path, re_path
 from drf_yasg import openapi
-
+from drf_yasg.views import get_schema_view
 
 # TODO: adds AnnotationList and AnnotationDetail endpoint.
 schema_view = get_schema_view(
@@ -33,7 +32,11 @@ schema_view = get_schema_view(
    public=True,
 )
 
-urlpatterns = [
+urlpatterns = []
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
     path('admin/', admin.site.urls),
     path('social/', include('social_django.urls')),
     path('api-auth/', include('rest_framework.urls')),
@@ -44,5 +47,3 @@ urlpatterns = [
 
 if 'cloud_browser' in settings.INSTALLED_APPS:
     urlpatterns.append(path('cloud-storage/', include('cloud_browser.urls')))
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

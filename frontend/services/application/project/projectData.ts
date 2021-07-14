@@ -8,13 +8,15 @@ export class ProjectDTO {
   current_users_role: CurrentUsersRole
   projectType: ProjectType
   updatedAt: string
-  enableRandomizeDocOrder: boolean
+  enableRandomOrder: boolean
   enableShareAnnotation: boolean
   singleClassClassification: boolean
   pageLink: string
   permitApprove: Boolean
-  filterOption: String
   tags: Object[]
+  canDefineLabel: Boolean
+  canDefineRelation: Boolean
+  isTextProject: Boolean
 
   constructor(item: ProjectReadItem) {
     this.id = item.id
@@ -24,14 +26,16 @@ export class ProjectDTO {
     this.current_users_role = item.current_users_role
     this.projectType = item.project_type
     this.updatedAt = item.updated_at
-    this.enableRandomizeDocOrder = item.randomize_document_order
+    this.enableRandomOrder = item.random_order
     this.enableShareAnnotation = item.collaborative_annotation
     this.singleClassClassification = item.single_class_classification
     this.pageLink = item.annotationPageLink
     this.permitApprove = item.permitApprove
-    this.filterOption = item.filterOption
     this.tags = item.tags
+    this.canDefineLabel = item.canDefineLabel
+    this.canDefineRelation = item.canDefineRelation
+    this.isTextProject = item.isTextProject
   }
 }
 
-export type ProjectWriteDTO = Pick<ProjectDTO, 'id' | 'name' | 'description' | 'guideline' | 'projectType' | 'enableRandomizeDocOrder' | 'enableShareAnnotation' | 'singleClassClassification' | 'tags'>
+export type ProjectWriteDTO = Pick<ProjectDTO, 'id' | 'name' | 'description' | 'guideline' | 'projectType' | 'enableRandomOrder' | 'enableShareAnnotation' | 'singleClassClassification' | 'tags'>

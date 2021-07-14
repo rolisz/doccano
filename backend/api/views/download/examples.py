@@ -53,3 +53,21 @@ Offset_JSONL = """
 {"text": "Peter Blackburn", "label": [ [0, 15, "PERSON"] ]}
 {"text": "President Obama", "label": [ [10, 15, "PERSON"] ]}
 """
+
+CategoryImageClassification = """
+[
+    {
+        "filename": "20210514.png",
+        "label": ["cat"]
+    }
+]
+"""
+
+Speech2Text = """
+[
+    {
+        "filename": "20210514.mp3",
+        "label": ["Lorem ipsum dolor sit amet"]
+    }
+]
+"""
