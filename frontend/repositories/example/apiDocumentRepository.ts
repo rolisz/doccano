@@ -9,7 +9,7 @@ export class APIExampleRepository implements ExampleRepository {
   ) {}
 
   async list(projectId: string, { limit = '10', offset = '0', q = '', isChecked = '' }: SearchOption): Promise<ExampleItemList> {
-    const url = `/projects/${projectId}/examples?limit=${limit}&offset=${offset}&q=${q}&confirmed=${isChecked}`
+    const url = `/projects/${projectId}/examples?limit=${limit}&offset=${offset}&q=${q}&categories__isnull=${isChecked}`
     const response = await this.request.get(url)
     return plainToInstance(ExampleItemList, response.data)
   }
